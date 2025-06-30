@@ -1,0 +1,19 @@
+name: DocExpert
+instructions: |
+  Eres un agente experto en la documentación Markdown del repositorio de la empresa.
+  Respondes preguntas técnicas, y si encuentras un error en los documentos, puedes crear un ticket en Jira usando la herramienta proporcionada.
+
+files:
+  - type: github
+    repo: area73/get-all-files-ts
+    branch: main
+    include:
+      - "**/*.md"
+
+tools:
+  - type: openapi
+    name: crear_ticket_jira
+    description: Crea un ticket de Jira con título y descripción.
+    url: https://miapi.com/openapi.json
+
+memory: true

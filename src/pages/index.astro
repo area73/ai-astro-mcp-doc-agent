@@ -1,0 +1,44 @@
+---
+import DocExpertChat from '../components/DocExpertChat.astro';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DocExpert - Asistente de documentación</title>
+    <script src="/console-capture.js" is:inline></script>
+  </head>
+  <body>
+    <h1>Agente IA de documentación interna</h1>
+    <DocExpertChat />
+    <section style="margin-top:2rem;">
+      <h2>Logs de JavaScript</h2>
+      <pre id="js-logs" style="background:#111;color:#0f0;padding:1rem;height:200px;overflow:auto;"></pre>
+    </section>
+    <script>
+      console.log('test 1');
+      (function() {
+        const logEl = document.getElementById('js-logs');
+        const origLog = console.log;
+        const origError = console.error;
+        const origWarn = console.warn;
+        function appendLog(type, args) {
+          if (!logEl) return;
+          const msg = Array.from(args).map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' ');
+          logEl.textContent += `[${type}] ` + msg + '\n';
+          logEl.scrollTop = logEl.scrollHeight;
+        }
+        console.log = function() { appendLog('log', arguments); origLog.apply(console, arguments); };
+        console.error = function() { appendLog('error', arguments); origError.apply(console, arguments); };
+        console.warn = function() { appendLog('warn', arguments); origWarn.apply(console, arguments); };
+        window.addEventListener('error', function(e) {
+          appendLog('window.error', [e.message]);
+        });
+        window.addEventListener('unhandledrejection', function(e) {
+          appendLog('promise', [e.reason]);
+        });
+
+      })();
+    </script>
+  </body>
+</html>

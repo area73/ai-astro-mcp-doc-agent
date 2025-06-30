@@ -1,0 +1,14 @@
+{
+  "name": "astro-mcp-doc-agent",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^4.1.0",
+    "astro": "^5.0.0",
+    "preact": "^10.26.9"
+  }
+}

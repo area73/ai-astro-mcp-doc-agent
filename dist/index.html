@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><title>DocExpert - Asistente de documentación</title><script src="/console-capture.js"></script></head> <body> <h1>Agente IA de documentación interna</h1> <div class="chat-widget"><div class="chat-window"></div><div class="chat-input"><input type="text" value/><button>Enviar</button></div><style>
+        .chat-widget { max-width: 600px; margin: auto; padding: 2rem; }
+        .chat-window { border: 1px solid #ccc; padding: 1rem; height: 400px; overflow-y: scroll; }
+        .message { margin-bottom: 1rem; }
+        .message.user { text-align: right; font-weight: bold; }
+        .message.assistant { text-align: left; }
+        .chat-input { display: flex; gap: 1rem; margin-top: 1rem; }
+      </style></div> <section style="margin-top:2rem;"> <h2>Logs de JavaScript</h2> <pre id="js-logs" style="background:#111;color:#0f0;padding:1rem;height:200px;overflow:auto;"></pre> </section> <script type="module">console.log("test 1");(function(){const e=document.getElementById("js-logs"),t=console.log,s=console.error,c=console.warn;function o(n,l){if(!e)return;const g=Array.from(l).map(r=>typeof r=="object"?JSON.stringify(r):String(r)).join(" ");e.textContent+=`[${n}] `+g+`
+`,e.scrollTop=e.scrollHeight}console.log=function(){o("log",arguments),t.apply(console,arguments)},console.error=function(){o("error",arguments),s.apply(console,arguments)},console.warn=function(){o("warn",arguments),c.apply(console,arguments)},window.addEventListener("error",function(n){o("window.error",[n.message])}),window.addEventListener("unhandledrejection",function(n){o("promise",[n.reason])})})();</script> </body> </html>
